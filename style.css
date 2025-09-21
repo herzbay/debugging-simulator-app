@@ -1,97 +1,161 @@
 body {
-  font-family: monospace, sans-serif;
-  background: #0d1117;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: linear-gradient(135deg, #1f2937, #111827);
   color: #e6edf3;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
 }
 
 .game-container {
-  background: #161b22;
-  padding: 20px;
-  border-radius: 12px;
-  width: 600px;
+  background: #1e293b;
+  padding: 25px;
+  border-radius: 16px;
+  width: 650px;
   text-align: center;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+  animation: fadeIn 0.8s ease-in-out;
 }
 
 h1 {
   margin-bottom: 10px;
+  color: #38bdf8;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
 }
 
 .info {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   font-weight: bold;
+  font-size: 18px;
+}
+
+#timer {
+  color: #f87171;
+}
+#score {
+  color: #34d399;
 }
 
 pre {
-  background: #0d1117;
-  padding: 15px;
-  border-radius: 8px;
+  background: #0f172a;
+  padding: 18px;
+  border-radius: 10px;
   text-align: left;
   overflow-x: auto;
   cursor: pointer;
-  min-height: 100px;
+  min-height: 120px;
+  transition: background 0.2s;
 }
 
 pre span {
   display: block;
-  padding: 2px 8px;
-  border-radius: 5px;
+  padding: 3px 10px;
+  border-radius: 6px;
 }
 
 pre span:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.08);
 }
 
 .correct {
-  background: rgba(0, 255, 127, 0.2);
+  background: rgba(34, 197, 94, 0.3);
 }
-
 .wrong {
-  background: rgba(255, 0, 0, 0.2);
+  background: rgba(239, 68, 68, 0.3);
 }
 
 button {
   margin-top: 10px;
-  padding: 10px 15px;
+  padding: 12px 18px;
   border: none;
-  border-radius: 8px;
-  background: #238636;
+  border-radius: 10px;
+  background: #3b82f6;
   color: white;
+  font-weight: bold;
   cursor: pointer;
+  transition: transform 0.1s, background 0.2s;
 }
 
-button:disabled {
-  background: gray;
-  cursor: not-allowed;
+button:hover {
+  transform: scale(1.05);
+  background: #2563eb;
 }
 
 #retry-btn {
-  background: #f39c12;
+  background: #f59e0b;
 }
-
 #retry-btn:hover {
-  background: #e67e22;
+  background: #d97706;
 }
-
 #start-btn {
-  background: #2d6cdf;
+  background: #22c55e;
+}
+#start-btn:hover {
+  background: #16a34a;
+}
+#how-btn {
+  background: #8b5cf6;
+}
+#how-btn:hover {
+  background: #7c3aed;
 }
 
-#start-btn:hover {
-  background: #1f4faf;
+#howto {
+  background: #0f172a;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: left;
+}
+.hidden {
+  display: none;
+}
+
+#leaderboard {
+  margin-top: 15px;
+  padding: 10px;
+  background: #0f172a;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #fbbf24;
+}
+
+.footer-line {
+  margin-top: 25px;
+  width: 100%;
+  border: none;
+  border-top: 1px solid #374151;
 }
 
 footer {
-  margin-top: 20px;
+  margin: 15px 0;
   text-align: center;
-  color: #8b949e;
+  color: #9ca3af;
   font-size: 14px;
+}
+
+.socials {
+  margin-top: 8px;
+}
+
+.socials a {
+  color: #9ca3af;
+  font-size: 20px;
+  margin: 0 10px;
+  transition: color 0.2s;
+}
+
+.socials a:hover {
+  color: #38bdf8;
+}
+
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(10px);}
+  to {opacity:1; transform: translateY(0);}
 }
