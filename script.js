@@ -2,30 +2,27 @@ const codeSnippets = [
   {
     code: [
       "function greet(name) {",
-      "  console.log('Hello ' + name);",
+      "  console.log('Hello ' + name);", // bug
       "  return name;",
-      "}" 
+      "}"
     ],
-    bugIndex: 1, 
-    fixed: "  console.log('Hello, ' + name);"
+    bugIndex: 1,
   },
   {
     code: [
-      "for (let i = 0; i < 5; i++) {",
+      "for (let i = 0; i < 5; i++) {", // bug (should be <=)
       "  console.log(i);",
-      "}" 
+      "}"
     ],
     bugIndex: 0,
-    fixed: "for (let i = 0; i <= 5; i++) {"
   },
   {
     code: [
       "const arr = [1, 2, 3];",
-      "arr.push(4);",
-      "console.log(arr);" 
+      "arr.push(4);", // bug (change to pop)
+      "console.log(arr);"
     ],
     bugIndex: 1,
-    fixed: "arr.pop(4); // salah penggunaan pop()"
   }
 ];
 
@@ -36,7 +33,8 @@ const messages = {
     wrong: "❌ Wrong! Try again on the next snippet.",
     finish: (score) => `🎉 Game Over! Final Score: ${score}`,
     next: "Next ➡️",
-    retry: "🔄 Retry"
+    retry: "🔄 Retry",
+    play: "▶️ Play"
   },
   id: {
     description: "Temukan baris kode yang salah sebelum waktu habis!",
@@ -44,7 +42,8 @@ const messages = {
     wrong: "❌ Salah! Coba lagi di soal berikutnya.",
     finish: (score) => `🎉 Permainan selesai! Skor akhir: ${score}`,
     next: "Lanjutkan ➡️",
-    retry: "🔄 Coba Lagi"
+    retry: "🔄 Coba Lagi",
+    play: "▶️ Main"
   }
 };
 
@@ -54,14 +53,24 @@ let score = 0;
 let timeLeft = 30;
 let timerId;
 
-const codeSnippetEl = document.getElementById("code-snippet");
-const resultEl = document.getElementById("result");
-const scoreEl = document.getElementById("score");
-const timerEl = document.getElementById("timer");
 const langSelect = document.getElementById("lang");
 const descriptionEl = document.getElementById("description");
 const nextBtn = document.getElementById("next-btn");
 const retryBtn = document.getElementById("retry-btn");
+const startBtn = document.getElementById("start-btn");
+const codeSnippetEl = document.getElementById("code-snippet");
+const resultEl = document.getElementById("result");
+const scoreEl = document.getElementById("score");
+const timerEl = document.getElementById("timer");
+
+// Language switcher
+langSelect.addEventListener("change", () => {
+  lang = langSelect.value;
+  descriptionEl.textContent = messages[lang].description;
+  nextBtn.textContent = messages[lang].next;
+  retryBtn.textContent = messages[lang].retry;
+  startBtn.textContent = messages[lang].play;
+});
 
 function loadSnippet() {
   codeSnippetEl.innerHTML = "";
@@ -94,24 +103,6 @@ function checkAnswer(selectedIndex) {
   nextBtn.disabled = false;
 }
 
-langSelect.addEventListener("change", () => {
-  lang = langSelect.value;
-  descriptionEl.textContent = messages[lang].description;
-  nextBtn.textContent = messages[lang].next;
-  retryBtn.textContent = messages[lang].retry;
-});
-
-retryBtn.addEventListener("click", () => {
-  score = 0;
-  timeLeft = 30;
-  currentSnippet = 0;
-  scoreEl.textContent = `💯 ${score}`;
-  timerEl.textContent = `⏱️ ${timeLeft}`;
-  retryBtn.style.display = "none";
-  nextBtn.style.display = "inline-block";
-  startGame();
-});
-
 nextBtn.addEventListener("click", () => {
   currentSnippet++;
   if (currentSnippet < codeSnippets.length) {
@@ -121,27 +112,57 @@ nextBtn.addEventListener("click", () => {
   }
 });
 
+retryBtn.addEventListener("click", () => {
+  resetGame();
+  startGame();
+});
+
+startBtn.addEventListener("click", () => {
+  startBtn.style.display = "none";
+  startGame();
+});
+
 function startTimer() {
+  clearInterval(timerId);
   timerId = setInterval(() => {
-    timeLeft--;
-    timerEl.textContent = `⏱️ ${timeLeft}`;
-    if (timeLeft <= 0) {
+    if (timeLeft > 0) {
+      timeLeft--;
+      timerEl.textContent = `⏱️ ${timeLeft}`;
+    } else {
       clearInterval(timerId);
       endGame();
     }
   }, 1000);
 }
 
+function startGame() {
+  score = 0;
+  timeLeft = 30;
+  currentSnippet = 0;
+  scoreEl.textContent = `💯 ${score}`;
+  timerEl.textContent = `⏱️ ${timeLeft}`;
+  retryBtn.style.display = "none";
+  nextBtn.style.display = "inline-block";
+
+  loadSnippet();
+  startTimer();
+}
+
+function resetGame() {
+  score = 0;
+  timeLeft = 30;
+  currentSnippet = 0;
+  scoreEl.textContent = `💯 ${score}`;
+  timerEl.textContent = `⏱️ ${timeLeft}`;
+  resultEl.textContent = "";
+  retryBtn.style.display = "none";
+  nextBtn.style.display = "inline-block";
+}
+
 function endGame() {
+  clearInterval(timerId);
   codeSnippetEl.innerHTML = "";
   resultEl.textContent = messages[lang].finish(score);
   nextBtn.style.display = "none";
   retryBtn.style.display = "inline-block";
 }
-
-function startGame() {
-  loadSnippet();
-  startTimer();
-}
-
-startGame();

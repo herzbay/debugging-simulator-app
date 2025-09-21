@@ -3,35 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Code Debugger Simulator</title>
+  <title>Code Debugging Simulator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="game-container">
-  <h1>🕵️ Code Debugger Simulator</h1>
-  <p id="description">Find the buggy line of code before time runs out!</p>
-  
-  <!-- Language Selector -->
-  <div class="lang-switcher">
-    <label for="lang">🌐 Language: </label>
-    <select id="lang">
-      <option value="en">English</option>
-      <option value="id">Bahasa Indonesia</option>
-    </select>
+  <div class="game-container">
+    <h1>🕵️ Code Debugging Simulator</h1>
+    <p id="description">Find the buggy line of code before time runs out!</p>
+    
+    <!-- Language Selector -->
+    <div class="lang-switcher">
+      <label for="lang">🌐 Language: </label>
+      <select id="lang">
+        <option value="en">English</option>
+        <option value="id">Bahasa Indonesia</option>
+      </select>
+    </div>
+
+    <!-- Info (timer & score) -->
+    <div class="info">
+      <span id="timer">⏱️ 30</span>
+      <span id="score">💯 0</span>
+    </div>
+
+    <!-- Code area -->
+    <pre id="code-snippet"></pre>
+
+    <!-- Control buttons -->
+    <button id="start-btn">▶️ Play</button>
+    <button id="next-btn" disabled style="display:none;">Next ➡️</button>
+    <button id="retry-btn" style="display:none;">🔄 Retry</button>
+
+    <p id="result"></p>
   </div>
 
-  <div class="info">
-    <span id="timer">⏱️ 30</span>
-    <span id="score">💯 0</span>
-  </div>
-
-  <pre id="code-snippet"></pre>
-
-  <button id="next-btn" disabled>Next ➡️</button>
-  <button id="retry-btn" style="display:none;">🔄 Retry</button>
-
-  <p id="result"></p>
-</div>
+  <footer>
+    <p>Made with ❤️ by <strong>Herzbay</strong></p>
+  </footer>
 
   <script src="script.js"></script>
 </body>

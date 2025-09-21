@@ -3,6 +3,7 @@ body {
   background: #0d1117;
   color: #e6edf3;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -36,6 +37,7 @@ pre {
   text-align: left;
   overflow-x: auto;
   cursor: pointer;
+  min-height: 100px;
 }
 
 pre span {
@@ -71,20 +73,25 @@ button:disabled {
   cursor: not-allowed;
 }
 
-.lang-switcher {
-  margin-bottom: 10px;
-}
-
 #retry-btn {
-  margin-top: 10px;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
   background: #f39c12;
-  color: white;
-  cursor: pointer;
 }
 
 #retry-btn:hover {
   background: #e67e22;
+}
+
+#start-btn {
+  background: #2d6cdf;
+}
+
+#start-btn:hover {
+  background: #1f4faf;
+}
+
+footer {
+  margin-top: 20px;
+  text-align: center;
+  color: #8b949e;
+  font-size: 14px;
 }
