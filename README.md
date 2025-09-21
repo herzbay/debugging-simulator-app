@@ -3,9 +3,7 @@
 ---
 
 ## 📖 Description
-**Code Debugging Simulator** is a small interactive mini-game where players must **find buggy lines in JavaScript code** under a time limit.  
-This project was developed as part of a capstone assignment to demonstrate **code generation and optimization** combined with **AI support from IBM Granite via Replicate Playground**.  
-It aims to provide a fun and educational way to practice debugging skills while showing how AI can contribute to generating code challenges.
+**Code Debugging Simulator** is a small interactive mini-game where players must **find buggy lines in JavaScript code** under a time limit. This project was developed as part of a capstone assignment to demonstrate **code generation and optimization** combined with **AI support from IBM Granite via Replicate Playground**. It aims to provide a fun and educational way to practice debugging skills while showing how AI can contribute to generating code challenges.
 
 ---
 
