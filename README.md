@@ -71,3 +71,13 @@ Please note that the bugIndex is 4 because it refers to the line containing the 
 - The JSON outputs from Granite Playground are saved in assets/snippets_ai.json.
 - The game’s script.js fetches and merges these AI-generated snippets with manually created ones.
 - This allows players to experience a mix of hand-crafted and AI-generated debugging challenges.
+
+## 📸 Screenshots
+
+## 🎯 Purpose
+- Train your eye for debugging common JavaScript mistakes.
+- Showcase how AI models like IBM Granite can assist in creating educational tools.
+- Deliver a simple but engaging capstone project combining programming and AI.
+
+## ❤️ Credits
+Built with love by Herzbay
