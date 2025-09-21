@@ -1,66 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Code Debugging Simulator</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="game-container">
+  <!-- Header -->
+  <header>
     <h1>🕵️ Code Debugging Simulator</h1>
-    <p id="description">Find the buggy line of code before time runs out!</p>
-    
-    <!-- How to Play -->
-    <button id="how-btn">ℹ️ How to Play</button>
-    <div id="howto" class="hidden">
-      <p>🔹 Click the line of code you think is buggy.<br>
-      🔹 Correct click = +1 score.<br>
-      🔹 Wrong click = no score.<br>
-      🔹 You have 30 seconds, get the highest score possible!<br>
-      🔹 Your best score will be saved in Leaderboard.</p>
-    </div>
+    <p id="subtitle" class="subtitle"></p>
+  </header>
 
-    <!-- Language Selector -->
-    <div class="lang-switcher">
-      <label for="lang">🌐 Language: </label>
-      <select id="lang">
-        <option value="en">English</option>
-        <option value="id">Bahasa Indonesia</option>
-      </select>
-    </div>
-
-    <!-- Info (timer & score) -->
-    <div class="info">
-      <span id="timer">⏱️ 30</span>
-      <span id="score">💯 0</span>
-    </div>
-
-    <!-- Code area -->
-    <pre id="code-snippet"></pre>
-
-    <!-- Control buttons -->
-    <button id="start-btn">▶️ Play</button>
-    <button id="next-btn" disabled style="display:none;">Next ➡️</button>
-    <button id="retry-btn" style="display:none;">🔄 Retry</button>
-
-    <p id="result"></p>
-
-    <!-- Leaderboard -->
-    <div id="leaderboard">
-      <h3>🏆 Leaderboard</h3>
-      <p>Best Score: <span id="best-score">0</span></p>
-    </div>
+  <!-- Play button (center, below header) -->
+  <div class="play-area">
+    <button id="start-btn" class="play-btn" aria-label="Play">▶️ Play</button>
   </div>
 
-  <hr class="footer-line">
+  <main>
+    <!-- LEFT: How to + Language -->
+    <aside class="sidebar left">
+      <div class="card">
+        <h3 id="how-title">ℹ️ How to Play</h3>
+        <div id="howto" class="howto-box"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-content center">
+          <label id="lang-label" for="lang">🌐 Language</label>
+          <select id="lang" class="lang-select" aria-label="Language select">
+            <option value="en">English</option>
+            <option value="id">Bahasa Indonesia</option>
+          </select>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER: Game -->
+    <section class="center">
+      <div class="card game-card">
+        <div class="info-card">
+          <span id="timer">⏱️ 30s</span>
+          <span id="elapsed-used">⏳ 0s</span>
+          <span id="score">💯 0</span>
+        </div>
+
+        <pre id="code-snippet" class="code-area" aria-label="Code snippet"></pre>
+
+        <p id="result" class="result-text"></p>
+
+        <div class="controls center">
+          <button id="next-btn" disabled style="display:none;">Next ➡️</button>
+          <button id="retry-btn" style="display:none;">🔄 Retry</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: Leaderboard -->
+    <aside class="sidebar right">
+      <div class="card leaderboard">
+        <h3 id="leaderboard-title">🏆 Leaderboard</h3>
+        <p id="best-score-text">Best Score: <strong id="best-score">0</strong></p>
+        <p id="best-time-text">Fastest Time: <strong id="best-time">--</strong> s</p>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Footer (single elegant bar) -->
   <footer>
-    <p>Made with ❤️ by <strong>Herzbay</strong></p>
-    <div class="socials">
-      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+    <div class="footer-inner">
+      <p class="footer-text">Made with ❤️ by <strong>Herzbay</strong></p>
+      <div class="socials">
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
     </div>
   </footer>
 

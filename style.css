@@ -1,161 +1,107 @@
-body {
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  background: linear-gradient(135deg, #1f2937, #111827);
-  color: #e6edf3;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
+:root{
+  --header-bg:#0b1220;
+  --footer-bg:#0f172a;
+  --card-bg:#111827;
+  --panel-bg:#0b1220;
+  --accent:#38bdf8;
+  --muted:#9ca3af;
+  --success:#34d399;
+  --danger:#f87171;
+  --gold:#fbbf24;
 }
 
-.game-container {
-  background: #1e293b;
-  padding: 25px;
-  border-radius: 16px;
-  width: 650px;
-  text-align: center;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
-  animation: fadeIn 0.8s ease-in-out;
+/* Basic layout */
+*{box-sizing:border-box}
+html,body{height:100%; margin:0}
+body{
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  display:flex; flex-direction:column;
+  background:linear-gradient(135deg,#07101a,#0d1622);
+  color:#e6edf3;
+  min-height:100vh;
 }
 
-h1 {
-  margin-bottom: 10px;
-  color: #38bdf8;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+/* Header */
+header{
+  padding:18px 20px;
+  text-align:center;
+  background:var(--header-bg);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+header h1{margin:0; color:var(--accent); font-size:26px}
+.subtitle{margin:6px 0 0; font-size:14px; color:#cdd6e0}
+
+/* Play area */
+.play-area{display:flex; justify-content:center; margin:18px 0}
+.play-btn{
+  padding:12px 22px; border-radius:12px; border:none;
+  background:#22c55e; color:#fff; font-weight:700; cursor:pointer;
+  transition: transform .08s, box-shadow .12s;
+}
+.play-btn:hover{transform:translateY(-3px); box-shadow:0 10px 30px rgba(34,197,94,0.12)}
+
+/* Main layout */
+main{flex:1; display:flex; gap:20px; padding:18px; align-items:flex-start}
+.sidebar{width:220px}
+.center{flex:1; max-width:780px}
+
+/* Cards */
+.card{background:var(--card-bg); border-radius:12px; padding:14px; box-shadow:0 8px 24px rgba(0,0,0,0.45); margin-bottom:16px}
+.card-content.center{display:flex; flex-direction:column;align-items:center; gap:10px}
+
+/* How-to: title centered, content left-aligned */
+#how-title { text-align:center; margin:0 0 8px; }
+#howto { font-size:14px; color:#e2e8f0; text-align:left; line-height:1.45; background:var(--panel-bg); padding:10px; border-radius:8px; }
+
+/* Game card */
+.info-card{display:flex; justify-content:space-between; font-weight:700; margin-bottom:10px}
+#timer{color:var(--danger)} #elapsed-used{color:#60a5fa} #score{color:var(--success)}
+
+.code-area{background:var(--panel-bg); padding:14px; border-radius:10px; min-height:120px; font-family: "Courier New", monospace; font-size:14px; color:#e6edf3; overflow-x:auto}
+.code-area span{display:block; padding:6px 10px; border-radius:8px; transition: background .12s}
+.code-area span:hover{background:rgba(255,255,255,0.03)}
+.correct{background:rgba(52,211,153,0.18); animation: glow .6s ease}
+.wrong{background:rgba(248,113,113,0.18); animation: shake .45s ease}
+
+.result-text{min-height:28px; text-align:center; margin-top:10px}
+
+/* Controls */
+.controls{display:flex; justify-content:center; gap:10px; margin-top:12px}
+button{padding:8px 14px; border-radius:8px; border:none; cursor:pointer; font-weight:700}
+#next-btn{background:#06b6d4;color:#fff}
+#retry-btn{background:#f59e0b;color:#fff}
+
+/* Leaderboard */
+.leaderboard{text-align:center; color:var(--gold)}
+.leaderboard strong{color:#fff}
+
+/* Footer - single elegant bar, made-with above socials */
+footer{
+  background:var(--footer-bg); color:var(--muted); padding:14px 18px;
+  border-top:1px solid rgba(255,255,255,0.04);
+}
+.footer-inner{display:flex; flex-direction:column; align-items:center; gap:8px}
+.footer-text{margin:0; color:#d1d5db}
+.socials a{color:var(--muted); margin:0 8px; font-size:18px; transition:color .12s}
+.socials a:hover{color:var(--accent)}
+
+/* Animations */
+@keyframes shake{
+  0%{transform:translateX(0)}
+  25%{transform:translateX(-6px)}
+  50%{transform:translateX(6px)}
+  75%{transform:translateX(-6px)}
+  100%{transform:translateX(0)}
+}
+@keyframes glow{
+  0%{box-shadow:0 0 0 rgba(52,211,153,0)}
+  50%{box-shadow:0 0 18px rgba(52,211,153,0.45)}
+  100%{box-shadow:0 0 0 rgba(52,211,153,0)}
 }
 
-.info {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-#timer {
-  color: #f87171;
-}
-#score {
-  color: #34d399;
-}
-
-pre {
-  background: #0f172a;
-  padding: 18px;
-  border-radius: 10px;
-  text-align: left;
-  overflow-x: auto;
-  cursor: pointer;
-  min-height: 120px;
-  transition: background 0.2s;
-}
-
-pre span {
-  display: block;
-  padding: 3px 10px;
-  border-radius: 6px;
-}
-
-pre span:hover {
-  background: rgba(255,255,255,0.08);
-}
-
-.correct {
-  background: rgba(34, 197, 94, 0.3);
-}
-.wrong {
-  background: rgba(239, 68, 68, 0.3);
-}
-
-button {
-  margin-top: 10px;
-  padding: 12px 18px;
-  border: none;
-  border-radius: 10px;
-  background: #3b82f6;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.1s, background 0.2s;
-}
-
-button:hover {
-  transform: scale(1.05);
-  background: #2563eb;
-}
-
-#retry-btn {
-  background: #f59e0b;
-}
-#retry-btn:hover {
-  background: #d97706;
-}
-#start-btn {
-  background: #22c55e;
-}
-#start-btn:hover {
-  background: #16a34a;
-}
-#how-btn {
-  background: #8b5cf6;
-}
-#how-btn:hover {
-  background: #7c3aed;
-}
-
-#howto {
-  background: #0f172a;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 8px;
-  font-size: 14px;
-  text-align: left;
-}
-.hidden {
-  display: none;
-}
-
-#leaderboard {
-  margin-top: 15px;
-  padding: 10px;
-  background: #0f172a;
-  border-radius: 8px;
-  font-size: 15px;
-  color: #fbbf24;
-}
-
-.footer-line {
-  margin-top: 25px;
-  width: 100%;
-  border: none;
-  border-top: 1px solid #374151;
-}
-
-footer {
-  margin: 15px 0;
-  text-align: center;
-  color: #9ca3af;
-  font-size: 14px;
-}
-
-.socials {
-  margin-top: 8px;
-}
-
-.socials a {
-  color: #9ca3af;
-  font-size: 20px;
-  margin: 0 10px;
-  transition: color 0.2s;
-}
-
-.socials a:hover {
-  color: #38bdf8;
-}
-
-@keyframes fadeIn {
-  from {opacity:0; transform: translateY(10px);}
-  to {opacity:1; transform: translateY(0);}
+/* Responsive */
+@media (max-width:980px){
+  main{flex-direction:column; padding:12px}
+  .sidebar{width:100%}
+  .center{max-width:100%}
 }
