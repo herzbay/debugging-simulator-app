@@ -29,6 +29,11 @@ It aims to provide a fun and educational way to practice debugging skills while 
 ---
 
 ## ⚙️ Setup Instructions
+### Option 1 — Play Online
+No setup needed. Try the live version here:  
+👉 [Code Debugging Simulator](https://debuggingsimulator.netlify.app/)
+
+### Option 2 — Run Locally
 1. Clone the repository:
    ```bash
    git clone https://github.com/herzbay/debugging-simulator-app
